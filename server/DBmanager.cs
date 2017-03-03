@@ -283,78 +283,7 @@ namespace Server
                 return new List<string>();
             }
         }
-
-        //public void dbExecuteGetSnapshotQuery(string query, string id_column, string file_column, string path)
-        //{
-        //    try
-        //    {
-        //        SQLiteCommand command = new SQLiteCommand(query, this.dbConnection);
-
-        //        FileStream stream;
-        //        BinaryWriter writer;
-
-        //        // Size of the BLOB buffer.
-        //        int bufferSize = 1024;
-        //        // The BLOB byte[] buffer to be filled by GetBytes.
-        //        byte[] outByte = new byte[bufferSize];
-        //        // The bytes returned from GetBytes.
-        //        long retval;
-        //        // The starting position in the BLOB output.
-        //        long startIndex = 0;
-
-        //        // The publisher id to use in the file name.
-        //        int id = 0;
-
-        //        SQLiteDataReader reader = command.ExecuteReader(CommandBehavior.SequentialAccess);
-
-        //        while (reader.Read())
-        //        {
-        //            // Get the publisher id, which must occur before getting the logo.
-        //            id = reader.GetInt32(reader.GetOrdinal(id_column));
-
-        //            // Create a file to hold the output.
-        //            stream = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write);
-        //            writer = new BinaryWriter(stream);
-
-        //            // Reset the starting byte for the new BLOB.
-        //            startIndex = 0;
-
-        //            // Read bytes into outByte[] and retain the number of bytes returned.
-        //            retval = reader.GetBytes(reader.GetOrdinal(file_column), startIndex, outByte, 0, bufferSize);
-
-        //            // Continue while there are bytes beyond the size of the buffer.
-        //            while (retval == bufferSize)
-        //            {
-        //                writer.Write(outByte);
-        //                writer.Flush();
-
-        //                // Reposition start index to end of last buffer and fill buffer.
-        //                startIndex += bufferSize;
-        //                retval = reader.GetBytes(1, startIndex, outByte, 0, bufferSize);
-        //            }
-
-        //            // Write the remaining buffer.
-        //            writer.Write(outByte, 0, (int)retval - 1);
-        //            writer.Flush();
-
-        //            // Close the output file.
-        //            writer.Close();
-        //            stream.Close();
-        //        }
-        //        reader.Close();
-        //    }
-        //    catch (System.InvalidOperationException e)
-        //    {
-        //        Console.WriteLine("server:DBmanager:dbExecuteGetFileQuery:Exception >> " + e.Message);
-        //        throw;
-        //    }
-        //    catch (SQLiteException e)
-        //    {
-        //        Console.WriteLine("server:DBmanager:dbExecuteGetFileQuery:Exception >> " + e.Message);
-        //        throw;
-        //    }
-        //}
-
+        
         public FileCloud dbExecuteGetFileQuery(string query, string[] parametersList, string outputPath)
         {
             SQLiteCommand command = null;
