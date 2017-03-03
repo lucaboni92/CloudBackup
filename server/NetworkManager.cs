@@ -18,25 +18,6 @@ namespace Server
         private const int TXT_BUFFER_SIZE = (4 * 1024) - 1;
         private const int FILE_BUFFER_SIZE = 2 * 1024;
 
-        /*
-         * uncomment the following part to continue encryption implementation
-         * 
-        private const string key = "1qaZ2wsX3edC";
-
-        private Byte[] IV = new Byte[] { 5, 23, 35, 83, 77, 35, 28, 34, 94, 25, 45, 62, 73, 2, 25, 48 };
-        private RijndaelManaged rij;
-        private byte[] psk;
-
-        internal NetworkManager()
-        {
-            rij = new RijndaelManaged();
-            rij.IV = IV;
-
-            psk = new byte[15];
-            Encoding.UTF8.GetBytes(key).CopyTo(psk, 0);
-        }
-    */
-
         public void NetWriteTextMsg(NetworkStream networkStream, string msg)
         {
             try
