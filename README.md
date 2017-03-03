@@ -8,4 +8,4 @@ CloudBackup is a client-server C# project for Windows OS, which allows to realiz
         -a   <ip address> 	  set a custom IP address for server (different from default IP read from NIC)
         -p   <port> 	      set a custom port for server (different from default 8888)
         --local 		      set localhost as IP address (127.0.0.1)
-        elp 		          print help
+        --help 		          print help
