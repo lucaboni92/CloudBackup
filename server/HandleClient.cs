@@ -513,13 +513,6 @@ namespace Server
                 throw new SocketException();
             }
 
-            /*
-            bool lastSnapshotFound = false;
-            string snapshotPath = Program.snapshotDirPath + @"lastSnapshot_" + username + ".txt";
-            returnMsg = GetLastSnapshotFromDb(snapshotPath);
-            if (returnMsg == Program.SUCCESSFUL_FILE_CREATION) lastSnapshotFound = true;
-            */
-
             // send last snapshot to the client
             string ack = string.Empty;
             if (snapshotEmpty == false)
@@ -567,24 +560,6 @@ namespace Server
                     PrintDebugMessage("Received message: " + returnMsg);
                     throw new SocketException();
                 }
-                /*
-                if (returnMsg != Program.LAST_SNAPSHOT)
-                {
-                    PrintVerboseMessage("server:handshakeThread: >> Unexpected message. Closing connection...");
-                    throw new SocketException();
-                }
-                this.networkManager.NetWriteTextMsg(networkStream, Program.ACK);
-                FileCloud recvSnapshot = networkManager.NetReadFile(networkStream, Program.snapshotDirPath);
-                if(recvSnapshot.hasValidLocalPath() == false)
-                {
-                    PrintVerboseMessage("server:handshakeThread: >> Invalid local path of received snapshot. Closing connection...");
-                    throw new SocketException();
-                } 
-                networkManager.NetWriteTextMsg(networkStream, Program.m_200_OK);
-                lastSnapshotFound = PutSnapshotInDb(recvSnapshot.getLocalPath());
-                PrintVerboseMessage("server:handshakeThread: >> Last snapshot received from client");
-                if (lastSnapshotFound == false) PrintVerboseMessage("server: handshakeThread: >> Error in saving last snapshot in database");
-                */
             }
         }
 
@@ -659,18 +634,6 @@ namespace Server
 
             return true;
         }
-
-        //private string GetSnapshotFromDb(string path)
-        //{
-        //    string id_column = "id_snapshot";
-        //    string file_column = "file_snapshot";
-        //    string query = "SELECT id_snapshot, file_snapshot FROM " + snapshotTableName + " WHERE version= (SELECT MAX(version) FROM " + snapshotTableName + ");";
-
-        //    dbManager.dbExecuteGetSnapshotQuery(query, id_column, file_column, path);
-        //    if (File.Exists(path) == false) return Program.ERROR_FILE_CREATION;
-
-        //    return Program.SUCCESSFUL_FILE_CREATION;
-        //}
 
         private int FileExistsInDb(string path) // returns the number of different versions stored for this file
         {
@@ -879,15 +842,6 @@ namespace Server
 
             return oldVersionsListConverted;
         }
-
-        //private int CountUserFiles()
-        //{
-        //    string query = "SELECT COUNT (*) FROM " + fileTableName + " GROUP BY path;" ;
-        //    int numberOfFiles = dbManager.dbExecuteCountQuery(query);
-
-        //    // can return -1 in case of db exception
-        //    return numberOfFiles;
-        //}
 
         private void ProduceMessage(Message m)
         {
